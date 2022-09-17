@@ -1,9 +1,7 @@
 {
-  "name": "nucleus-api-ts-client",
+  "name": "@nucleus-api/ts-client",
   "version": "0.0.1",
-  "description": "",
   "author": "",
-  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -21,5 +19,17 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.3.5"
   },
-  "files": ["dist/**/*"]
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nucleus-API/nucleus-api-ts-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nucleus-API/nucleus-api-ts-client/issues"
+  },
+  "homepage": "https://github.com/Nucleus-API/nucleus-api-ts-client#readme",
+  "description": ""
 }

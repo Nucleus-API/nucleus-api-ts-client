@@ -5,7 +5,7 @@ import { Logger } from "tslog";
 /**
  * https://docs.usenucleus.io/reference/api-reference
  */
-export class NucleusService {
+export class NucleusAPIClient {
   private axiosInstance: AxiosInstance;
   private logger: Logger;
 
@@ -20,7 +20,7 @@ export class NucleusService {
         "x-api-key": apiKey,
       },
     });
-    this.logger = new Logger({ name: "NucleusApiClient" });
+    this.logger = new Logger({ name: "NucleusAPIClient" });
   }
 
   async kyc(request: types.KYCRequest): Promise<types.KYCResponse> {
