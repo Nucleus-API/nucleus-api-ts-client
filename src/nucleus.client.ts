@@ -10,8 +10,8 @@ export default class NucleusAPIClient {
   private axiosInstance: AxiosInstance;
   private logger: Logger;
 
-  constructor(private apiKey: string, private isSandbox: boolean) {
-    const nucleusBaseUrl: string = isSandbox
+  constructor(private apiKey: string, private isSandbox: boolean, endpoint?: string) {
+    const nucleusBaseUrl: string = endpoint ? endpoint : isSandbox
       ? "https://sandbox.usenucleus.io"
       : "https://api.usenucleus.io";
     this.axiosInstance = axios.create({
