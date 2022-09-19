@@ -179,6 +179,16 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async listCorporateCardTransactionsAtDAOLevel(
+    request: card.ListCorporateCardTxsForDAORequest
+  ): Promise<card.ListCardTxsResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get(`/card/corporate/transactions/list`, {
+      headers: {
+        "x-multisig-address": request.daoMultisigAddress,
+      },
+    }));
+  }
+
   async simulateCorporateCardTransaction(
     request: card.SimulateCorporateCardTxsRequest
   ) {
