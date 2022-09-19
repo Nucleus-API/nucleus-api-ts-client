@@ -112,6 +112,17 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async updateConsumerCard(
+    request: card.UpdateConsumerCardRequest,
+  ): Promise<string> {
+    const { cardHolderWalletAddress, ...updateRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.patch("/card/consumer/update", { ...updateRequest }, {
+      headers: {
+        "x-wallet-address": cardHolderWalletAddress,
+      },
+    }));
+  }
+
   async simulateConsumerCardTransaction(
     request: card.SimulateConsumerCardTxsRequest
   ) {
@@ -185,6 +196,17 @@ export default class NucleusAPIClient {
     return this.wrapServiceCall(() => this.axiosInstance.get(`/card/corporate/transactions/list`, {
       headers: {
         "x-multisig-address": request.daoMultisigAddress,
+      },
+    }));
+  }
+
+  async updateCorporateCard(
+    request: card.UpdateCorporateCardRequest,
+  ): Promise<string> {
+    const { daoMultisigAddress, ...updateRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.patch("/card/corporate/update", { ...updateRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
       },
     }));
   }

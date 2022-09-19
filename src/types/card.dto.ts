@@ -53,6 +53,17 @@ export class ListConsumerCardTxsRequest extends ConsumerRequest { cardId!: numbe
 export class ListCorporateCardTxsRequest extends CorporateRequest { cardId!: number; }
 export class ListCorporateCardTxsForDAORequest extends CorporateRequest {}
 
+export class UpdateConsumerCardRequest extends ConsumerRequest {
+  cardId!: number;
+
+  label!: string;
+}
+export class UpdateCorporateCardRequest extends CorporateRequest {
+  cardId!: number;
+
+  label!: string;
+}
+
 export class SimulateConsumerCardTxsRequest extends ConsumerRequest {
   cardId!: number;
 
