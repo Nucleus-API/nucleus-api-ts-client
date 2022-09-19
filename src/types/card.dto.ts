@@ -52,6 +52,17 @@ export class ListCorporateCardTransactionsRequest extends CorporateRequest {}
 export class ListConsumerCardTxsRequest extends ConsumerRequest { cardId!: number; }
 export class ListCorporateCardTxsRequest extends CorporateRequest { cardId!: number; }
 
+export class SimulateConsumerCardTxsRequest extends ConsumerRequest {
+  cardId!: number;
+
+  amount!: number;
+}
+export class SimulateCorporateCardTxsRequest extends CorporateRequest {
+  cardId!: number;
+
+  amount!: number;
+}
+
 export class ListCardTxsResponse {
   txnType!: string;
 

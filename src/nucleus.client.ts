@@ -1,5 +1,5 @@
-import * as identity from "types/identity.dto";
-import * as card from ".//types/card.dto";
+import * as identity from "./types/identity.dto";
+import * as card from "./types/card.dto";
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { Logger } from "tslog";
 
@@ -38,6 +38,10 @@ export default class NucleusAPIClient {
         "x-wallet-address": walletAddress,
       },
     }));
+  }
+
+  async registerDAO(request: identity.RegisterDAORequest): Promise<identity.RegisterDAOResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/dao", { ...request, }));
   }
 
   async kyb(request: identity.KYBRequest) {
@@ -108,6 +112,17 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async simulateConsumerCardTransaction(
+    request: card.SimulateConsumerCardTxsRequest
+  ) {
+    const { cardHolderWalletAddress, ...simulateRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.post('/card/consumer/transactions/simulate', { ...simulateRequest }, {
+      headers: {
+        "x-wallet-address": cardHolderWalletAddress,
+      },
+    }));
+  }
+
   /**
    * CORPORATE CARDS Endpoints
    */
@@ -164,13 +179,23 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async simulateCorporateCardTransaction(
+    request: card.SimulateCorporateCardTxsRequest
+  ) {
+    const { daoMultisigAddress, ...simulateRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.post('/card/corporate/transactions/simulate', { ...simulateRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
+      },
+    }));
+  }
   
   private async wrapServiceCall(serviceCall: () => Promise<AxiosResponse>) {
     try {
       const result: AxiosResponse = await serviceCall();
       return result.data;
     } catch (err) {
-      this.logger.error(err);
+      this.logger.error((err as Error).message);
       throw err;
     }
   }

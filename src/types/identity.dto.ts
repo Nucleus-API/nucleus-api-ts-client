@@ -34,6 +34,18 @@ export class KYCRequest {
   address!: Address;
 }
 
+export class RegisterDAORequest {
+  @IsNotEmpty()
+  multisigAddress!: string;
+
+  @IsNotEmpty()
+  ownerUserId!: number;
+}
+
+export class RegisterDAOResponse {
+  daoId!: number;
+}
+
 export class KYBRequest {
   @IsNotEmpty()
   associatedDAOId!: number;
