@@ -64,6 +64,9 @@ export class UpdateCorporateCardRequest extends CorporateRequest {
   label!: string;
 }
 
+export class DeleteConsumerCardRequest extends ConsumerRequest { cardId!: number; }
+export class DeleteCorporateCardRequest extends CorporateRequest { cardId!: number; }
+
 export class SimulateConsumerCardTxsRequest extends ConsumerRequest {
   cardId!: number;
 

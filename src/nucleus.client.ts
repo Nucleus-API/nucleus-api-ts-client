@@ -123,6 +123,17 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async deleteConsumerCard(
+    request: card.DeleteConsumerCardRequest,
+  ): Promise<string> {
+    const { cardHolderWalletAddress, ...deleteRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.delete(`/card/consumer/${deleteRequest.cardId}`, {
+      headers: {
+        "x-wallet-address": cardHolderWalletAddress,
+      },
+    }));
+  }
+
   async simulateConsumerCardTransaction(
     request: card.SimulateConsumerCardTxsRequest
   ) {
@@ -205,6 +216,17 @@ export default class NucleusAPIClient {
   ): Promise<string> {
     const { daoMultisigAddress, ...updateRequest } = request;
     return this.wrapServiceCall(() => this.axiosInstance.patch("/card/corporate/update", { ...updateRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
+      },
+    }));
+  }
+
+  async deleteCorporateCard(
+    request: card.DeleteCorporateCardRequest,
+  ): Promise<string> {
+    const { daoMultisigAddress, ...deleteRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.delete(`/card/corporate/${deleteRequest.cardId}`, {
       headers: {
         "x-multisig-address": daoMultisigAddress,
       },
