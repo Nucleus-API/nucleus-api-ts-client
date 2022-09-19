@@ -243,6 +243,27 @@ export default class NucleusAPIClient {
       },
     }));
   }
+
+  async getCardsBalanceForDAO(
+    request: card.GetCardsBalanceRequest
+  ): Promise<card.GetCardsBalanceResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get('/card/corporate/balance', {
+      headers: {
+        "x-multisig-address": request.daoMultisigAddress,
+      },
+    }));
+  }
+
+  async withdraw(
+    request: card.WithdrawRequest
+  ) {
+    const { daoMultisigAddress, ...withdrawRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.post('/card/corporate/withdraw', { ...withdrawRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
+      },
+    }));
+  }
   
   private async wrapServiceCall(serviceCall: () => Promise<AxiosResponse>) {
     try {

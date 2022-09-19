@@ -78,6 +78,17 @@ export class SimulateCorporateCardTxsRequest extends CorporateRequest {
   amount!: number;
 }
 
+export class GetCardsBalanceRequest extends CorporateRequest {}
+
+export class WithdrawRequest extends CorporateRequest {
+  amount!: number;
+
+  description!: string;
+
+  requestingUserId?: number;
+}
+
+
 export class ListCardTxsResponse {
   txnType!: string;
 
@@ -104,4 +115,12 @@ export class Merchant {
   merchantCategory!: string;
 
   merchantCategoryCode!: string;
+}
+
+export class GetCardsBalanceResponse {
+  cryptoBalance!: number;
+
+  usdBalance!: number;
+
+  currency!: string;
 }
