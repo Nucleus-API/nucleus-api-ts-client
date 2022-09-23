@@ -44,6 +44,14 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async getUser(walletAddress: string): Promise<identity.UserResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get("/identity/user", {
+      headers: {
+        "x-wallet-address": walletAddress,
+      },
+    }));
+  }
+
   async associateUserToBusiness(request: identity.AssociateRequest) {
     return this.wrapServiceCall(() => this.axiosInstance.post("/identity/associateUserToBusiness", { ...request, }));
   }

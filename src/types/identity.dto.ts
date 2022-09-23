@@ -111,3 +111,15 @@ export class KYCStatusResponse {
 export class KYBStatusResponse {
   status!: string;
 }
+
+export class UserResponse {
+  id!: number;
+
+  walletAddress!: string;
+
+  consumerCardHolder!: boolean;
+
+  corporateCardHolder!: boolean;
+
+  kycStatus!: string;
+}
