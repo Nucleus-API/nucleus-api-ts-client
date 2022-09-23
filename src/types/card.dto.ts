@@ -19,7 +19,7 @@ export class CreateCorporateCardRequest extends CorporateRequest {
 
   spendLimit!: number;
 
-  spendLimitDuration!: string;
+  spendLimitInterval!: string;
 }
 
 export class Card {
@@ -61,7 +61,11 @@ export class UpdateConsumerCardRequest extends ConsumerRequest {
 export class UpdateCorporateCardRequest extends CorporateRequest {
   cardId!: number;
 
-  label!: string;
+  label?: string;
+
+  spendLimit?: number;
+
+  spendLimitInterval?: string;
 }
 
 export class DeleteConsumerCardRequest extends ConsumerRequest { cardId!: number; }
@@ -81,13 +85,21 @@ export class SimulateCorporateCardTxsRequest extends CorporateRequest {
 export class GetCardsBalanceRequest extends CorporateRequest {}
 
 export class WithdrawRequest extends CorporateRequest {
-  amount!: number;
+  quantity!: number;
 
   description!: string;
 
   requestingUserId?: number;
 }
+export class WithdrawResponse {
+  status!: string;
 
+  estimatedGasFees!: number;
+
+  txnType!: string;
+
+  quantity!: number;
+}
 
 export class ListCardTxsResponse {
   txnType!: string;

@@ -16,7 +16,7 @@ export default class NucleusAPIClient {
       : "https://api.usenucleus.io";
     this.axiosInstance = axios.create({
       baseURL: nucleusBaseUrl,
-      timeout: 5000,
+      timeout: 30000,
       headers: {
         "x-api-key": apiKey,
       },
@@ -32,12 +32,20 @@ export default class NucleusAPIClient {
     return this.wrapServiceCall(() => this.axiosInstance.post("/identity/kyc", { ...request, }));
   }
 
+  async kycDAOMember(request: identity.KYCDAOMemberRequest): Promise<identity.KYCResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/dao/kyc", { ...request, }));
+  }
+
   async kycStatus(walletAddress: string): Promise<identity.KYCStatusResponse> {
     return this.wrapServiceCall(() => this.axiosInstance.get("/identity/kyc/status", {
       headers: {
         "x-wallet-address": walletAddress,
       },
     }));
+  }
+
+  async associateUserToBusiness(request: identity.AssociateRequest) {
+    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/associateUserToBusiness", { ...request, }));
   }
 
   async registerDAO(request: identity.RegisterDAORequest): Promise<identity.RegisterDAOResponse> {
@@ -215,7 +223,7 @@ export default class NucleusAPIClient {
     request: card.UpdateCorporateCardRequest,
   ): Promise<string> {
     const { daoMultisigAddress, ...updateRequest } = request;
-    return this.wrapServiceCall(() => this.axiosInstance.patch("/card/corporate/update", { ...updateRequest }, {
+    return this.wrapServiceCall(() => this.axiosInstance.patch(`/card/corporate/${updateRequest.cardId}`, { ...updateRequest }, {
       headers: {
         "x-multisig-address": daoMultisigAddress,
       },
@@ -256,7 +264,7 @@ export default class NucleusAPIClient {
 
   async withdraw(
     request: card.WithdrawRequest
-  ) {
+  ): Promise<card.WithdrawResponse> {
     const { daoMultisigAddress, ...withdrawRequest } = request;
     return this.wrapServiceCall(() => this.axiosInstance.post('/card/corporate/withdraw', { ...withdrawRequest }, {
       headers: {

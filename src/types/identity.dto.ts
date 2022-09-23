@@ -1,7 +1,7 @@
 import { IsNotEmpty } from "class-validator";
 
 export class KYCResponse {
-  userId!: string;
+  userId!: number;
 }
 
 export class KYCRequest {
@@ -32,6 +32,16 @@ export class KYCRequest {
   idNumber!: string;
 
   address!: Address;
+}
+
+export class KYCDAOMemberRequest extends KYCRequest {}
+
+export class AssociateRequest {
+  @IsNotEmpty()
+  daoId!: number;
+
+  @IsNotEmpty()
+  userId!: number;
 }
 
 export class RegisterDAORequest {
