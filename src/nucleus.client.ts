@@ -52,6 +52,14 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async getUserStatus(walletAddress: string): Promise<identity.UserStatusResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get("/identity/user/status", {
+      headers: {
+        "x-wallet-address": walletAddress,
+      },
+    }));
+  }
+
   async associateUserToBusiness(request: identity.AssociateRequest) {
     return this.wrapServiceCall(() => this.axiosInstance.post("/identity/associateUserToBusiness", { ...request, }));
   }
@@ -66,6 +74,22 @@ export default class NucleusAPIClient {
 
   async kybStatus(multisigAddress: string): Promise<identity.KYBStatusResponse> {
     return this.wrapServiceCall(() => this.axiosInstance.get("/identity/kyb/status", {
+      headers: {
+        "x-multisig-address": multisigAddress,
+      },
+    }));
+  }
+
+  async getDAO(multisigAddress: string): Promise<identity.DAOResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get("/identity/dao", {
+      headers: {
+        "x-multisig-address": multisigAddress,
+      },
+    }));
+  }
+
+  async getDAOStatus(multisigAddress: string): Promise<identity.DAOStatusResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get("/identity/dao/status", {
       headers: {
         "x-multisig-address": multisigAddress,
       },
@@ -189,7 +213,7 @@ export default class NucleusAPIClient {
 
   async getCorporateCard(
     request: card.GetCorporateCardRequest
-  ): Promise<card.Card> {
+  ): Promise<card.CorporateCard> {
     return this.wrapServiceCall(() => this.axiosInstance.get(`/card/corporate/${request.cardId}`, {
       headers: {
         "x-multisig-address": request.daoMultisigAddress,
@@ -199,7 +223,7 @@ export default class NucleusAPIClient {
 
   async listCorporateCards(
     request: card.ListCorporateCardTransactionsRequest
-  ): Promise<card.Card[]> {
+  ): Promise<card.CorporateCard[]> {
     return this.wrapServiceCall(() => this.axiosInstance.get('/card/corporate/list', {
       headers: {
         "x-multisig-address": request.daoMultisigAddress,

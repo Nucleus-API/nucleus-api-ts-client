@@ -120,6 +120,34 @@ export class UserResponse {
   consumerCardHolder!: boolean;
 
   corporateCardHolder!: boolean;
+}
 
-  kycStatus!: string;
+export class DAOResponse {
+  id!: number;
+
+  multisigAddress!: string;
+
+  hasSuportedIncorporation!: boolean;
+
+  ownerUserId!: number;
+}
+
+export class UserStatusResponse {
+  kyc!: string;
+
+  provisioningStatus!: ProvisioningStatus
+}
+
+export class DAOStatusResponse {
+  kyb!: string;
+
+  provisioningStatus!: boolean;
+}
+
+export class ProvisioningStatus {
+  individualDAOCard?: boolean;
+
+  corporateDAOCard?: boolean;
+
+  consumerCard?: boolean;
 }

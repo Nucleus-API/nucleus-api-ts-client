@@ -40,6 +40,10 @@ export class Card {
   spendLimitDuration?: string;
 }
 
+export class CorporateCard extends Card {
+  fundingSafeTxHash?: string;
+}
+
 export class CreateConsumerCardTokenRequest extends ConsumerRequest {}
 export class CreateCorporateCardTokenRequest extends CorporateRequest { cardId!: number; }
 
