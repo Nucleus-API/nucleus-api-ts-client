@@ -112,6 +112,10 @@ export class KYBStatusResponse {
   status!: string;
 }
 
+export class IDVResponse {
+  link!: string;
+}
+
 export class UserResponse {
   id!: number;
 

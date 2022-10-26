@@ -42,6 +42,10 @@ export class Card {
 
 export class CorporateCard extends Card {
   fundingSafeTxHash?: string;
+
+  availableBalance!: number;
+
+  totalAmountFunded!: number;
 }
 
 export class CreateConsumerCardTokenRequest extends ConsumerRequest {}
@@ -66,10 +70,16 @@ export class UpdateCorporateCardRequest extends CorporateRequest {
   cardId!: number;
 
   label?: string;
+}
+export class FundCorporateCardRequest extends CorporateRequest {
+  cardId!: number;
 
-  spendLimit?: number;
+  amount!: number;
+}
+export class WithdrawCorporateCardRequest extends CorporateRequest {
+  cardId!: number;
 
-  spendLimitInterval?: string;
+  amount!: number;
 }
 
 export class DeleteConsumerCardRequest extends ConsumerRequest { cardId!: number; }
@@ -139,4 +149,6 @@ export class GetCardsBalanceResponse {
   usdBalance!: number;
 
   currency!: string;
+
+  individualWalletToBalance?: any;
 }

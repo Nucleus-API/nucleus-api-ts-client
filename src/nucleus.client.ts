@@ -44,6 +44,14 @@ export default class NucleusAPIClient {
     }));
   }
 
+  async idv(walletAddress: string): Promise<identity.IDVResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/idv", {
+      headers: {
+        "x-wallet-address": walletAddress,
+      },
+    }));
+  }
+
   async getUser(walletAddress: string): Promise<identity.UserResponse> {
     return this.wrapServiceCall(() => this.axiosInstance.get("/identity/user", {
       headers: {
@@ -256,6 +264,28 @@ export default class NucleusAPIClient {
   ): Promise<string> {
     const { daoMultisigAddress, ...updateRequest } = request;
     return this.wrapServiceCall(() => this.axiosInstance.patch(`/card/corporate/${updateRequest.cardId}`, { ...updateRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
+      },
+    }));
+  }
+
+  async fundCorporateCard(
+    request: card.FundCorporateCardRequest,
+  ): Promise<string> {
+    const { daoMultisigAddress, ...fundRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.post(`/card/corporate/fund/${fundRequest.cardId}`, { ...fundRequest }, {
+      headers: {
+        "x-multisig-address": daoMultisigAddress,
+      },
+    }));
+  }
+
+  async withdrawCorporateCard(
+    request: card.WithdrawCorporateCardRequest,
+  ): Promise<string> {
+    const { daoMultisigAddress, ...withdrawRequest } = request;
+    return this.wrapServiceCall(() => this.axiosInstance.post(`/card/corporate/withdraw/${withdrawRequest.cardId}`, { ...withdrawRequest }, {
       headers: {
         "x-multisig-address": daoMultisigAddress,
       },
