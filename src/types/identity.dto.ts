@@ -52,6 +52,14 @@ export class RegisterDAORequest {
   ownerUserId!: number;
 }
 
+export class UpdateDAORequest {
+  @IsNotEmpty()
+  multisigAddress!: string;
+
+  @IsNotEmpty()
+  newMultisigAddress!: string;
+}
+
 export class RegisterDAOResponse {
   daoId!: number;
 }
@@ -112,8 +120,14 @@ export class KYBStatusResponse {
   status!: string;
 }
 
-export class IDVResponse {
-  link!: string;
+export class SubmitIDVResponse {
+  link?: string;
+}
+
+export class GetIDVResponse {
+  link?: string;
+
+  submitted?: boolean;
 }
 
 export class UserResponse {

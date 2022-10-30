@@ -44,8 +44,16 @@ export default class NucleusAPIClient {
     }));
   }
 
-  async idv(walletAddress: string): Promise<identity.IDVResponse> {
-    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/idv", {
+  async submitIdv(walletAddress: string): Promise<identity.SubmitIDVResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.post("/identity/idv", {}, {
+      headers: {
+        "x-wallet-address": walletAddress,
+      },
+    }));
+  }
+
+  async getIdv(walletAddress: string): Promise<identity.GetIDVResponse> {
+    return this.wrapServiceCall(() => this.axiosInstance.get("/identity/idv", {
       headers: {
         "x-wallet-address": walletAddress,
       },
@@ -74,6 +82,14 @@ export default class NucleusAPIClient {
 
   async registerDAO(request: identity.RegisterDAORequest): Promise<identity.RegisterDAOResponse> {
     return this.wrapServiceCall(() => this.axiosInstance.post("/identity/dao", { ...request, }));
+  }
+
+  async updateDAO(request: identity.UpdateDAORequest) {
+    return this.wrapServiceCall(() => this.axiosInstance.patch("/identity/dao", { ...request, }, {
+      headers: {
+        "x-multisig-address": request.multisigAddress,
+      },
+    }));
   }
 
   async kyb(request: identity.KYBRequest) {
