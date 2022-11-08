@@ -43,6 +43,8 @@ export class Card {
 export class CorporateCard extends Card {
   fundingSafeTxHash?: string;
 
+  fundingSafeTxHashes!: string[];
+
   availableBalance!: number;
 
   totalAmountFunded!: number;
