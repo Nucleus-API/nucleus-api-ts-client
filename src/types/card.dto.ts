@@ -51,16 +51,26 @@ export class CorporateCard extends Card {
 }
 
 export class CreateConsumerCardTokenRequest extends ConsumerRequest {}
-export class CreateCorporateCardTokenRequest extends CorporateRequest { cardId!: number; }
+export class CreateCorporateCardTokenRequest extends CorporateRequest {
+  cardId!: number;
+}
 
-export class GetConsumerCardRequest extends ConsumerRequest { cardId!: number; }
-export class GetCorporateCardRequest extends CorporateRequest { cardId!: number; }
+export class GetConsumerCardRequest extends ConsumerRequest {
+  cardId!: number;
+}
+export class GetCorporateCardRequest extends CorporateRequest {
+  cardId!: number;
+}
 
 export class ListConsumerCardTransactionsRequest extends ConsumerRequest {}
 export class ListCorporateCardTransactionsRequest extends CorporateRequest {}
 
-export class ListConsumerCardTxsRequest extends ConsumerRequest { cardId!: number; }
-export class ListCorporateCardTxsRequest extends CorporateRequest { cardId!: number; }
+export class ListConsumerCardTxsRequest extends ConsumerRequest {
+  cardId!: number;
+}
+export class ListCorporateCardTxsRequest extends CorporateRequest {
+  cardId!: number;
+}
 export class ListCorporateCardTxsForDAORequest extends CorporateRequest {}
 
 export class UpdateConsumerCardRequest extends ConsumerRequest {
@@ -72,6 +82,8 @@ export class UpdateCorporateCardRequest extends CorporateRequest {
   cardId!: number;
 
   label?: string;
+
+  cardStatus?: string;
 }
 export class FundCorporateCardRequest extends CorporateRequest {
   cardId!: number;
@@ -84,8 +96,12 @@ export class WithdrawCorporateCardRequest extends CorporateRequest {
   amount!: number;
 }
 
-export class DeleteConsumerCardRequest extends ConsumerRequest { cardId!: number; }
-export class DeleteCorporateCardRequest extends CorporateRequest { cardId!: number; }
+export class DeleteConsumerCardRequest extends ConsumerRequest {
+  cardId!: number;
+}
+export class DeleteCorporateCardRequest extends CorporateRequest {
+  cardId!: number;
+}
 
 export class SimulateConsumerCardTxsRequest extends ConsumerRequest {
   cardId!: number;
