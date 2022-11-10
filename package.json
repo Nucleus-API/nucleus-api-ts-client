@@ -1,6 +1,6 @@
 {
   "name": "nucleus-api-ts-client",
-  "version": "0.0.58",
+  "version": "0.0.59",
   "author": "",
   "license": "UNLICENSED",
   "scripts": {
@@ -21,7 +21,9 @@
   },
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nucleus-API/nucleus-api-ts-client.git"
