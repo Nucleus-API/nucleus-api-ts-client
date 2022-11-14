@@ -215,7 +215,7 @@ export default class NucleusAPIClient {
 
   async createCorporateCard(
     request: card.CreateCorporateCardRequest
-  ): Promise<card.Card> {
+  ): Promise<card.CorporateCard> {
     const { daoMultisigAddress, ...cardRequest } = request;
     return this.wrapServiceCall(() => this.axiosInstance.post("/card/corporate/create", { ...cardRequest, }, {
       headers: {
