@@ -132,6 +132,8 @@ export class WithdrawResponse {
 }
 
 export class ListCardTxsResponse {
+  txnId!: string;
+
   txnType!: string;
 
   merchant!: Merchant;
